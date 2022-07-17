@@ -19,7 +19,7 @@ class CategoryBloc extends Bloc {
     eventChannel.addEventListener(HourTrackerEvents.addCategory.toString(),
         BlocEventChannel.simpleListener((val) => addCategory(val)));
     eventChannel.addEventListener(HourTrackerEvents.changeCategory.toString(),
-        BlocEventChannel.simpleListener((val) => _updateCategories(val)));
+        BlocEventChannel.simpleListener((val) => _updateCategory(val)));
   }
 
   final SearchMeUp<CategoryModel> searchMeUp =
@@ -103,7 +103,12 @@ class CategoryBloc extends Bloc {
         .forEach((element) => map[element.id!] = element);
   }
 
-  void _updateCategories(CategoryModel model) {
+  void _updateCategory(CategoryModel model) {
+    if (model.id == null) {
+      return;
+    }
+
+    map[model.id!] = model;
     repo.saveModel(CATEGORY_DB, model);
     updateBloc();
   }

@@ -16,7 +16,7 @@ class CategoryStatusCountWidget extends StatelessWidget {
 
     return Card(
       child: Padding(
-        padding: const EdgeInsets.only(left: 10),
+        padding: const EdgeInsets.all(10),
         child: Row(children: [
           Expanded(
             child: CategoryStatusCountIndividualWidget(

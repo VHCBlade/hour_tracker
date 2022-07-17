@@ -46,7 +46,6 @@ class HiveRepository extends DatabaseRepository {
     if (model.id == null) {
       final newId = await getNextSequence(database);
       model.id = '${model.type}::$newId';
-      await box.delete(newId);
     }
 
     await box.put(model.id, model);
